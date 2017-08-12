@@ -1,19 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import {Task} from '../Task'
+import { TaskService } from "../services/task.service";
 
 @Component({
   selector: 'app-task',
   templateUrl: './task.component.html',
-  styleUrls: ['./task.component.css']
+  styleUrls: ['./task.component.css'],
+  providers:[TaskService]
 })
 export class TaskComponent implements OnInit {
   tasks: Task[] = []
   
-  constructor() { 
-    this.tasks.push(new Task('understanding angular', false),
-  new Task('Taking a break', false),
-    new Task('sleeping', true)
-)
+  constructor( private dataSerive: TaskService) { 
+    this.tasks = dataSerive.getTasks();
   }
 
   ngOnInit() {

@@ -5,7 +5,7 @@
 <input type="text" #taskText (keyup)="handleKeyUp($event)">
 <button (click)="addNewTask(taskText.value)"> new Task</button>
 <ol>
-    <div *ngFor="let task of tasks">
+    <div class="leftA" *ngFor="let task of tasks">
       <input type="checkbox" 
       #chkbox
       [checked]="task.completed"
