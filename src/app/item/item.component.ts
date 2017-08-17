@@ -23,14 +23,14 @@ export class ItemComponent implements OnInit {
 
   }
 
-  // deleteAll(checked:boolean) {
-  //   var x=this;
-  //    this.items.forEach( function (arrayItem)
-  //   {
-  //     x.removeItem(arrayItem)
+  deleteAll() {
+    var x=this;
+     this.items.forEach( function (arrayItem)
+    {
+      x.removeItem(arrayItem)
 
-  //   }); 
-  // }
+    }); 
+  }
 
   removeItem(item: Item) {
     this.items = this.items.filter(  t => t !== item);
