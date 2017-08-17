@@ -10,17 +10,26 @@ import { ItemService } from "../itemServices/item.service";
 })
 export class ItemComponent implements OnInit {
   items: Item [] = []
-  
+  inputerror:boolean;
+  reinputitem:boolean;
+
   constructor( private dataSerive: ItemService) { 
     this.items = dataSerive.getItems();
+
+    
   }
 
   ngOnInit() {
 
   }
 
-  // completeAll(checked:boolean) {
-  //   this.items.forEach( task => task.setCompleted(checked))
+  // deleteAll(checked:boolean) {
+  //   var x=this;
+  //    this.items.forEach( function (arrayItem)
+  //   {
+  //     x.removeItem(arrayItem)
+
+  //   }); 
   // }
 
   removeItem(item: Item) {
@@ -28,7 +37,24 @@ export class ItemComponent implements OnInit {
   }
 
   addNewItem(name: string,price:number ,count:number){
-    this.items.push(new Item(name,price,count));
+          
+    var i;
+     this.reinputitem=false;
+     for (i = 0; i < this.items.length; i++)
+       {
+    if( name  ==  this.items[i].getName() )
+      this.reinputitem=true;
+
+      }
+     
+        if(name !="" && !this.reinputitem  )
+    {this.items.push(new Item(name,price,count));
+     this.inputerror=false;
+    }
+    else if(name !="" && this.reinputitem )
+      this.inputerror=false;
+    else
+      this.inputerror=true; 
   }
 
   getTotal()
@@ -48,6 +74,8 @@ this.items.forEach( function (arrayItem)
     return totale;
 
 }
+
+
 
   // getTotale()
   // {
